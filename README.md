@@ -1,16 +1,44 @@
-# React + Vite
+# FOOD PROMOTION
+Descontos em produtos próximos ao vencimento
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Iniciando o projeto com Docker
+### Pré-requisitos
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e rodando.
+---
+### Docker rodando, siga os passos abaixo:
+1. Clone o repositório:
 
-## React Compiler
+    `git clone https://github.com/fullcycle-gt4/food-promotion`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Navegue até o seu repositório local
 
-## Expanding the ESLint configuration
+    ` cd SEU DIRETÓRIO`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+3. Execute o seguinte comando para criar a imagem Docker do projeto localmente
+
+    ` docker build -t food-promotion-frontend .`
+
+4. Agora, crie o container da imagem
+
+    ` docker run -d -p 8080:8080 --name food-promotion-app food-promotion-frontend ` 
+
+5. Acesse via localhost
+
+    ` localhost:8080 ` 
+
+6. Aproveite as promoções.
+
+### Comandos Úteis
+1. Parar a aplicação:
+
+    `docker stop food-promotion-app`
+
+2. Iniciar novamente: 
+
+    `docker start food-promotion-app`
+
+3. Remover o container:
+
+    ` docker rm -f food-promotion-app`
