@@ -1,27 +1,71 @@
-# FOOD PROMOTION
-Descontos em produtos próximos ao vencimento
+<div align="center">
 
+# 🏷️ Food Promotion Microservice
 
+> **Microserviço de Gestão de Promoções e Descontos por Vencimento de Produtos.**
 
-## Iniciando o projeto com Docker
-### Pré-requisitos
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e rodando.
+[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-iniciando-o-projeto-com-docker)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange?style=for-the-badge)](#-arquitetura-e-padroes)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](#-licenca)
+
+</div>
+
 ---
-### Docker rodando, siga os passos abaixo:
-1. Clone o repositório:
 
-    `git clone https://github.com/fullcycle-gt4/food-promotion`
+## 📌 Sobre o Projeto
 
-2. Navegue até o seu repositório local
+O **Food Promotion** é um microserviço integrante da plataforma de autoatendimento para lanchonetes e restaurantes. Sua finalidade é gerenciar **campanhas promocionais**, aplicando **descontos dinâmicos em produtos próximos da data de vencimento**.
 
-    ` cd SEU DIRETÓRIO`
+Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) e disponibiliza preços reduzidos aos clientes no totem ou aplicativo de pedidos.
 
-3. Execute o seguinte comando para criar a imagem docker e rodar localmente
+---
 
-    ` docker compose up -d ` 
+## 🛠️ Tech Stack & Arquitetura
 
-5. Acesse via localhost
+- **Linguagem & Runtime:** Go / Node.js *(Ajuste para a linguagem exata usada no repositório)*
+- **Banco de Dados:** MongoDB / PostgreSQL *(Dependendo da estratégia de persistência)*
+- **Containerização:** Docker e Docker Compose
+- **Padrões de Projeto:** Clean Architecture, DDD (*Domain-Driven Design*), REST API
 
-    ` localhost:8080 ` 
+---
 
-6. Aproveite as promoções.
+## 🚀 Iniciando o Projeto com Docker
+
+### 📋 Pré-requisitos
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
+* [Git](https://git-scm.com/) instalado.
+
+---
+
+### ⚙️ Passo a Passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/fullcycle-gt4/food-promotion.git](https://github.com/fullcycle-gt4/food-promotion.git)
+
+
+
+1. Navegue até o diretório do projeto:
+
+cd food-promotion
+
+2. Suba os containers da aplicação e banco de dados:
+
+Bash
+docker compose up -d --build
+
+3. Acesse e teste a API via localhost:
+
+http://localhost:8080
+
+🛣️ API Endpoints PrincipaisMétodoEndpointDescriçãoGET/healthHealthcheck da aplicaçãoGET/productsLista 
+
+os produtos cadastrados e seus valores normais/promocionaisPOST/productsCadastra um novo produto para controle de vencimentoGET/promotionsRetorna apenas os produtos em promoção ativaPOST/promotionsCria uma nova regra/campanha de desconto por vencimento
+
+
+👥 Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
+
+
+
+
+📄 LicençaEste projeto está sob a licença MIT - consulte o arquivo LICENSE para mais detalhes.
