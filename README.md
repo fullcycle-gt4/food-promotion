@@ -41,21 +41,18 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/fullcycle-gt4/food-promotion.git](https://github.com/fullcycle-gt4/food-promotion.git)
-
-
+   git clone https://github.com/fullcycle-gt4/food-promotion
 
 1. Navegue até o diretório do projeto:
-
+   ```bash
    cd food-promotion
 
 2. Suba os containers da aplicação e banco de dados:
-
-   Bash
+   ```bash
    docker compose up -d --build
 
 3. Acesse e teste a API via localhost:
-
+   ```bash
    http://localhost:8080
 
 🛣️ API Endpoints PrincipaisMétodoEndpointDescriçãoGET/healthHealthcheck da aplicaçãoGET/productsLista 
