@@ -66,6 +66,16 @@ os produtos cadastrados e seus valores normais/promocionaisPOST/productsCadastra
 👥 Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
 
 
+GitHub: https://github.com/DeilsonGilmar
+GitHub: https://github.com/senna47
+GitHub: https://github.com/pomptrash
+GitHub: https://github.com/amandapaulav
+GitHub: https://github.com/pedrorochaneto
+GitHub: https://github.com/EmillioMartins
+
+
+
+
 
 
 📄 LicençaEste projeto está sob a licença MIT - consulte o arquivo LICENSE para mais detalhes.
