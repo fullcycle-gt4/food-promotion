@@ -22,10 +22,8 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 ## 🛠️ Tech Stack & Arquitetura
 
-- **Linguagem & Runtime:** Go / Node.js *(Ajuste para a linguagem exata usada no repositório)*
-- **Banco de Dados:** MongoDB / PostgreSQL *(Dependendo da estratégia de persistência)*
+- **Linguagem & Runtime:** React.js 
 - **Containerização:** Docker e Docker Compose
-- **Padrões de Projeto:** Clean Architecture, DDD (*Domain-Driven Design*), REST API
 
 ---
 
@@ -49,30 +47,17 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 2. Suba os containers da aplicação e banco de dados:
    ```bash
-   docker compose up -d --build
+   docker compose up -d
 
 3. Acesse e teste a API via localhost:
    ```bash
    http://localhost:8080
 
-🛣️ API Endpoints PrincipaisMétodoEndpointDescriçãoGET/healthHealthcheck da aplicaçãoGET/productsLista 
-
-os produtos cadastrados e seus valores normais/promocionaisPOST/productsCadastra um novo produto para controle de vencimentoGET/promotionsRetorna apenas os produtos em promoção ativaPOST/promotionsCria uma nova regra/campanha de desconto por vencimento
-
-
 👥 Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
 
-
-GitHub: https://github.com/DeilsonGilmar
-GitHub: https://github.com/senna47
-GitHub: https://github.com/pomptrash
-GitHub: https://github.com/amandapaulav
-GitHub: https://github.com/pedrorochaneto
-GitHub: https://github.com/EmillioMartins
-
-
-
-
-
-
-📄 LicençaEste projeto está sob a licença MIT - consulte o arquivo LICENSE para mais detalhes.
+GitHub: https://github.com/DeilsonGilmar 
+GitHub: https://github.com/senna47 
+GitHub: https://github.com/pomptrash 
+GitHub: https://github.com/amandapaulav 
+GitHub: https://github.com/pedrorochaneto 
+GitHub: https://github.com/EmillioMartins 
