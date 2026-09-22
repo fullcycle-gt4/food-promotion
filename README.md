@@ -47,16 +47,16 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 1. Navegue até o diretório do projeto:
 
-cd food-promotion
+   cd food-promotion
 
 2. Suba os containers da aplicação e banco de dados:
 
-Bash
-docker compose up -d --build
+   Bash
+   docker compose up -d --build
 
 3. Acesse e teste a API via localhost:
 
-http://localhost:8080
+   http://localhost:8080
 
 🛣️ API Endpoints PrincipaisMétodoEndpointDescriçãoGET/healthHealthcheck da aplicaçãoGET/productsLista 
 
