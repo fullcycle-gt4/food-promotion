@@ -16,29 +16,12 @@ Descontos em produtos próximos ao vencimento
 
     ` cd SEU DIRETÓRIO`
 
-3. Execute o seguinte comando para criar a imagem Docker do projeto localmente
+3. Execute o seguinte comando para criar a imagem docker e rodar localmente
 
-    ` docker build -t food-promotion-frontend .`
-
-4. Agora, crie o container da imagem
-
-    ` docker run -d -p 8080:8080 --name food-promotion-app food-promotion-frontend ` 
+    ` docker compose up -d ` 
 
 5. Acesse via localhost
 
     ` localhost:8080 ` 
 
 6. Aproveite as promoções.
-
-### Comandos Úteis
-1. Parar a aplicação:
-
-    `docker stop food-promotion-app`
-
-2. Iniciar novamente: 
-
-    `docker start food-promotion-app`
-
-3. Remover o container:
-
-    ` docker rm -f food-promotion-app`
