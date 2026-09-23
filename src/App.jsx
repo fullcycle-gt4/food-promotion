@@ -1,17 +1,8 @@
+import React from "react";
+import Login from "./pages/Login";
 
 function App() {
-  return (
-    <>
-      <section id="center">
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Food Promotion
-          </p>
-        </div>
-      </section>
-    </>
-  )
+  return <Login />;
 }
 
-export default App
+export default App;
