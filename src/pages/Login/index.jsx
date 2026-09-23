@@ -1,63 +1,69 @@
-
 import "./Login.css";
+import { Link } from "react-router-dom";
 
-function App() {
-  return (
-    <main className="container">
-      <form>
-        <h1>
-          <br />
-          Login
-          <br />
-          Food Promotion
-        </h1>
+function Login() {
+    return (
+        <main className="container">
 
-        {/* Usuário */}
-        <div className="input-box">
-          <input
-            type="email"
-            placeholder="Usuário"
-            required
-          />
-          <i className="bx bxs-user"></i>
-        </div>
+            <form>
 
-        {/* Senha */}
-        <div className="input-box">
-          <input
-            type="password"
-            placeholder="Senha"
-            required
-          />
-          <i className="bx bxs-lock-alt"></i>
-        </div>
+                <h1>
+                    Login
+                    <br />
+                    Food Promotion
+                </h1>
 
-        {/* Lembrar e recuperar senha */}
-        <div className="remember-forgot">
-          <label>
-            <input type="checkbox" name="remember" />
-            Lembrar-me
-          </label>
+                <div className="input-box">
+                    <input
+                        type="email"
+                        placeholder="Usuário"
+                        required
+                    />
+                    <i className="bx bxs-user"></i>
+                </div>
 
-          <a href="#">Esqueceu a senha?</a>
-        </div>
+                <div className="input-box">
+                    <input
+                        type="password"
+                        placeholder="Senha"
+                        required
+                    />
+                    <i className="bx bxs-lock-alt"></i>
+                </div>
 
-        {/* Botão */}
-        <button type="submit" className="login">
-          Entrar
-        </button>
+                <div className="remember-forgot">
 
-        {/* Cadastro */}
-        <div className="register-link">
-          <p>
-            Criar conta{" "}
-            <a href="#">Cadastre-se</a>
-          </p>
-        </div>
-      </form>
-    </main>
-  );
+                    <label>
+                        <input type="checkbox" />
+                        Lembrar-me
+                    </label>
+
+                    <a href="#">
+                        Esqueceu a senha?
+                    </a>
+
+                </div>
+
+                <button
+                    type="submit"
+                    className="login"
+                >
+                    Entrar
+                </button>
+
+                <div className="register-link">
+                    <p>
+                        Não tem uma conta?{" "}
+                        <Link to="/cadastro">
+                            Cadastre-se
+                        </Link>
+                    </p>
+                </div>
+
+            </form>
+
+        </main>
+    );
 }
 
-export default App;
-
+export default Login;
