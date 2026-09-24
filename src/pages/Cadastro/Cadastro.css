@@ -24,7 +24,8 @@ align-items: center;
 min-height: 100vh;
 padding: 20px;
 
-background: url('./img/food.png') center / cover no-repeat;
+/* caminho corrigido para a imagem compartilhada pela pasta Login */
+background: url('../Login/img/food.png') center / cover no-repeat;
 
 }
 
