@@ -1,12 +1,10 @@
-import "./Login.css";
+﻿import "./Login.css";
 import { Link } from "react-router-dom";
 
 function Login() {
     return (
         <main className="container">
-
             <form>
-
                 <h1>
                     Login
                     <br />
@@ -32,16 +30,14 @@ function Login() {
                 </div>
 
                 <div className="remember-forgot">
-
                     <label>
                         <input type="checkbox" />
                         Lembrar-me
                     </label>
 
-                    <a href="#">
+                    <Link to="/esqueceu-senha">
                         Esqueceu a senha?
-                    </a>
-
+                    </Link>
                 </div>
 
                 <button
@@ -59,9 +55,7 @@ function Login() {
                         </Link>
                     </p>
                 </div>
-
             </form>
-
         </main>
     );
 }
