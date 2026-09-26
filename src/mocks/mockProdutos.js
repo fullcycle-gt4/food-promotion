@@ -12,7 +12,8 @@ export const mockProdutos = [
     preco: '34.90',
     quantidade: '25',
     dataVencimento: '2026-11-15',
-    imagem: cafeArabica
+    imagem: cafeArabica,
+    categoria: 'Bebidas'
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ export const mockProdutos = [
     preco: '49.90',
     quantidade: '10',
     dataVencimento: '2027-06-30',
-    imagem: azeiteOliva
+    imagem: azeiteOliva,
+    categoria: 'Óleos e Condimentos'
   },
   {
     id: 3,
@@ -28,7 +30,8 @@ export const mockProdutos = [
     preco: '9.99',
     quantidade: '50',
     dataVencimento: '2026-08-20',
-    imagem: chocolatePreto
+    imagem: chocolatePreto,
+    categoria: 'Doces e Sobremesas'
   },
   {
     id: 4,
@@ -36,7 +39,8 @@ export const mockProdutos = [
     preco: '7.50',
     quantidade: '40',
     dataVencimento: '2027-02-10',
-    imagem: arrozIntegral
+    imagem: arrozIntegral,
+    categoria: 'Grãos e Cereais'
   },
   {
     id: 5,
@@ -44,7 +48,8 @@ export const mockProdutos = [
     preco: '6.20',
     quantidade: '30',
     dataVencimento: '2026-12-31',
-    imagem: aveiaFlocos
+    imagem: aveiaFlocos,
+    categoria: 'Grãos e Cereais'
   },
   {
     id: 6,
@@ -52,6 +57,7 @@ export const mockProdutos = [
     preco: '12.00',
     quantidade: '15',
     dataVencimento: '2028-01-10',
-    imagem: chaVerde
+    imagem: chaVerde,
+    categoria: 'Bebidas'
   }
 ];

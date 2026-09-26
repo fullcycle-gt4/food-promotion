@@ -1,0 +1,29 @@
+﻿.recovery-instructions {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.send-code {
+  margin: -10px 0 10px;
+  font-size: 15px;
+}
+
+.send-code:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+}
+
+.demo-code,
+.recovery-error {
+  margin: 8px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+}
+
+.recovery-error {
+  color: #ffd3d3;
+}
