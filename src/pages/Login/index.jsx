@@ -44,7 +44,7 @@ function Login() {
                     type="submit"
                     className="login"
                 >
-                    Entrar
+                    <Link to="/Home">Entrar</Link>
                 </button>
 
                 <div className="register-link">
