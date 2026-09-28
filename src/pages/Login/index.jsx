@@ -1,11 +1,26 @@
 import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+    const navigate = useNavigate();
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [erro, setErro] = useState("");
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        if (email.trim().toLowerCase() === "teste@gmail.com" && senha === "12345") {
+            navigate("/usuario");
+            return;
+        }
+        setErro("Email ou senha inválidos.");
+    }
+
     return (
         <main className="container">
 
-            <form>
+            <form onSubmit={handleSubmit}>
 
                 <h1>
                     Login
@@ -17,6 +32,8 @@ function Login() {
                     <input
                         type="email"
                         placeholder="Usuário"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                         required
                     />
                     <i className="bx bxs-user"></i>
@@ -26,6 +43,8 @@ function Login() {
                     <input
                         type="password"
                         placeholder="Senha"
+                        value={senha}
+                        onChange={(event) => setSenha(event.target.value)}
                         required
                     />
                     <i className="bx bxs-lock-alt"></i>
@@ -50,6 +69,8 @@ function Login() {
                 >
                     Entrar
                 </button>
+
+                {erro && <p role="alert">{erro}</p>}
 
                 <div className="register-link">
                     <p>
