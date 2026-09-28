@@ -10,7 +10,7 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        if (email.trim().toLowerCase() === "teste@gmail.com" && senha === "12345") {
+        if (email.trim().toLowerCase() === "teste@gmail.com" && senha === "12345678") {
             navigate("/usuario");
             return;
         }
