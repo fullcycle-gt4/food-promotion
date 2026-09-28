@@ -61,3 +61,4 @@ GitHub: https://github.com/pomptrash
 GitHub: https://github.com/amandapaulav 
 GitHub: https://github.com/pedrorochaneto 
 GitHub: https://github.com/EmillioMartins 
+GitHub: https://github.com/carolemosdev
