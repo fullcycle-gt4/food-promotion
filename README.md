@@ -59,5 +59,5 @@ GitHub: https://github.com/DeilsonGilmar
 GitHub: https://github.com/senna47 
 GitHub: https://github.com/pomptrash 
 GitHub: https://github.com/amandapaulav 
-GitHub: https://github.com/pedrorochaneto 
 GitHub: https://github.com/EmillioMartins 
+GitHub: https://github.com/carolemosdev
