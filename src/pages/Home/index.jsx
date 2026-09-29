@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./styles.css";
-import { mockProdutos } from "../../mocks/mockProdutos";
+import { carregarProdutos } from "../../utils/produtos";
 import { Link } from "react-router-dom";
 
 export default function Home() {
+  const [produtos] = useState(carregarProdutos);
+
   function formatarPreco(preco) {
     return Number(preco).toLocaleString("pt-BR", {
       style: "currency",
@@ -21,9 +24,10 @@ export default function Home() {
           <h1>Food Promotion</h1>
         </div>
 
-        <span>
+        <div className="home-account-actions">
+          <Link to="/perfil" className="profile-access-button">Perfil do ADM</Link>
           <Link to="/" className="logout">Sair</Link>
-        </span>
+        </div>
       </header>
 
       <section className="produtos-container">
@@ -33,14 +37,16 @@ export default function Home() {
             <p>Confira a lista de produtos cadastrados.</p>
           </div>
 
-          <span className="total-produtos">{mockProdutos.length} produtos</span>
+          <span className="total-produtos">{produtos.length} produtos</span>
         </div>
 
         <div className="produtos-grid">
-          {mockProdutos.map((produto) => (
+          {produtos.map((produto) => (
             <article className="produto-card" key={produto.id}>
               <div className="produto-imagem">
-                <img src={produto.imagem} alt={produto.nome} />
+                {produto.imagem
+                  ? <img src={produto.imagem} alt={produto.nome} />
+                  : <span className="produto-sem-imagem">{produto.categoria || 'Produto'}</span>}
               </div>
 
               <div className="produto-conteudo">

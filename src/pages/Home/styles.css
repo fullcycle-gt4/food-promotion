@@ -3,6 +3,40 @@
   box-sizing: border-box;
 }
 
+.home-account-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.profile-access-button {
+  padding: 10px 16px;
+  border: 1px solid #f4b740;
+  border-radius: 6px;
+  background: #f4b740;
+  color: #173a34;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.profile-access-button:hover {
+  border-color: #ffd06e;
+  background: #ffd06e;
+  color: #173a34;
+  text-decoration: none;
+}
+
+.produto-sem-imagem {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
 .produtos-page {
   min-height: 100vh;
   padding: 30px 6%;
