@@ -1,0 +1,30 @@
+class ConflictException extends Error {
+  readonly status = 409;
+
+  constructor(message: string) {
+    super(message);
+    this.name = 'ConflictException';
+  }
+}
+
+type CustomerRepository = {
+  findByDocument(document: string): Promise<unknown>;
+  save(data: CreateCustomerDto): Promise<unknown>;
+};
+
+type CreateCustomerDto = {
+  document: string;
+  [key: string]: unknown;
+};
+
+export class CreateCustomerUseCase {
+  constructor(private readonly customerRepository: CustomerRepository) {}
+
+  async execute(data: CreateCustomerDto) {
+    const exists = await this.customerRepository.findByDocument(data.document);
+    if (exists) {
+      throw new ConflictException('Cliente já cadastrado');
+    }
+    return await this.customerRepository.save(data);
+  }
+}
