@@ -1,14 +1,27 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { mockProdutos } from "../../mocks/mockProdutos";
+import PasswordField from "../../components/PasswordField";
 import "./User.css";
 
 const ultimosComprados = [mockProdutos[3], mockProdutos[1]];
-const itensCarrinho = [mockProdutos[0], mockProdutos[5]];
+const carrinhoInicial = [mockProdutos[0], mockProdutos[5]].map((produto) => ({ ...produto, quantidadeCarrinho: 1 }));
 
 function User() {
   const [editando, setEditando] = useState(false);
   const [salvo, setSalvo] = useState(false);
+  const [senhaAtual, setSenhaAtual] = useState("");
+  const [novaSenha, setNovaSenha] = useState("");
+  const [confirmacaoSenha, setConfirmacaoSenha] = useState("");
+  const [mensagemSenha, setMensagemSenha] = useState("");
+  const [erroSenha, setErroSenha] = useState("");
+  const [itensCarrinho, setItensCarrinho] = useState(() => {
+    const salvo = localStorage.getItem("foodPromotionCarrinho");
+    if (salvo) {
+      try { return JSON.parse(salvo); } catch { return carrinhoInicial; }
+    }
+    return carrinhoInicial;
+  });
   const [foto, setFoto] = useState(() => localStorage.getItem("foodPromotionFoto") || "");
   const [email, setEmail] = useState(() => localStorage.getItem("foodPromotionEmail") || "teste@gmail.com");
   const [dados, setDados] = useState(() => ({
@@ -59,11 +72,35 @@ function User() {
     setSalvo(true);
   }
 
+  function redefinirSenha(event) {
+    event.preventDefault();
+    setErroSenha("");
+    setMensagemSenha("");
+    const senhaSalva = localStorage.getItem("foodPromotionSenha") || "12345678";
+    if (senhaAtual !== senhaSalva) {
+      setErroSenha("A senha atual está incorreta.");
+      return;
+    }
+    if (novaSenha.length < 8) {
+      setErroSenha("A nova senha deve ter pelo menos 8 caracteres.");
+      return;
+    }
+    if (novaSenha !== confirmacaoSenha) {
+      setErroSenha("A confirmação não corresponde à nova senha.");
+      return;
+    }
+    localStorage.setItem("foodPromotionSenha", novaSenha);
+    setSenhaAtual("");
+    setNovaSenha("");
+    setConfirmacaoSenha("");
+    setMensagemSenha("Senha alterada. Use a nova senha no próximo login.");
+  }
+
   function preco(valor) {
     return Number(valor).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
   }
 
-  const totalCarrinho = itensCarrinho.reduce((total, produto) => total + Number(produto.preco), 0);
+  const totalCarrinho = itensCarrinho.reduce((total, produto) => total + Number(produto.preco) * (produto.quantidadeCarrinho || 1), 0);
 
   return (
     <main className="usuario-page">
@@ -72,6 +109,7 @@ function User() {
           <Link to="/Home" className="usuario-marca">Food Promotion</Link>
           <nav aria-label="Navegação principal">
             <Link to="/Home" className="usuario-home">⌂ <span>Home</span></Link>
+            <Link to="/historico" className="usuario-home">Histórico</Link>
             <Link to="/" className="usuario-sair">Sair</Link>
           </nav>
         </header>
@@ -117,8 +155,20 @@ function User() {
             )}
           </section>
 
+          <section className="usuario-seguranca" aria-labelledby="senha-titulo">
+            <div className="usuario-secao-titulo"><h2 id="senha-titulo">Redefinir senha</h2></div>
+            <form className="usuario-senha-form" onSubmit={redefinirSenha}>
+              <PasswordField placeholder="Senha atual" autoComplete="current-password" value={senhaAtual} onChange={(event) => setSenhaAtual(event.target.value)} required />
+              <PasswordField placeholder="Nova senha (mínimo 8 caracteres)" autoComplete="new-password" minLength={8} value={novaSenha} onChange={(event) => setNovaSenha(event.target.value)} required />
+              <PasswordField placeholder="Confirme a nova senha" autoComplete="new-password" value={confirmacaoSenha} onChange={(event) => setConfirmacaoSenha(event.target.value)} required />
+              <button className="usuario-botao" type="submit">Alterar senha</button>
+            </form>
+            {erroSenha && <p className="usuario-senha-erro" role="alert">{erroSenha}</p>}
+            {mensagemSenha && <p className="usuario-salvo" role="status">{mensagemSenha}</p>}
+          </section>
+
           <section className="usuario-lista" aria-labelledby="compras-titulo">
-            <div className="usuario-secao-titulo"><h2 id="compras-titulo">Últimos produtos comprados</h2><span>2 compras</span></div>
+            <div className="usuario-secao-titulo"><h2 id="compras-titulo">Últimos produtos comprados</h2><Link className="usuario-historico-link" to="/historico">Ver histórico</Link></div>
             <div className="usuario-produtos">
               {ultimosComprados.map((produto) => (
                 <article className="usuario-produto" key={produto.id}>
@@ -134,7 +184,7 @@ function User() {
             <div className="usuario-carrinho-itens">
               {itensCarrinho.map((produto) => (
                 <div className="usuario-carrinho-item" key={produto.id}>
-                  <span>{produto.nome}</span><strong>{preco(produto.preco)}</strong>
+                  <span>{produto.nome} × {produto.quantidadeCarrinho || 1}</span><strong>{preco(Number(produto.preco) * (produto.quantidadeCarrinho || 1))}</strong>
                 </div>
               ))}
             </div>

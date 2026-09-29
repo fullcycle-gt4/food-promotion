@@ -1,0 +1,29 @@
+.historico-page { min-height:100vh; padding:28px 20px 48px; color:#fff; font-family:'Poppins',sans-serif; background:linear-gradient(135deg,rgba(10,44,24,.76),rgba(17,83,39,.62)),url('https://images.unsplash.com/photo-1542838132-92c53300491e') center/cover fixed; }
+.historico-shell { max-width:1000px; margin:0 auto; }
+.historico-header { display:flex; justify-content:space-between; align-items:center; padding:0 8px 20px; }
+.historico-marca { color:#fff; font-size:24px; font-weight:800; text-decoration:none; }
+.historico-header nav { display:flex; align-items:center; gap:12px; }
+.historico-nav,.historico-sair { color:#fff; text-decoration:none; font-weight:600; }
+.historico-nav { padding:8px 14px; border:1px solid #ffffff55; border-radius:999px; }
+.historico-painel { padding:32px; border:1px solid #ffffff65; border-radius:22px; background:rgba(17,43,27,.70); box-shadow:0 20px 60px #071b1080; backdrop-filter:blur(16px); }
+.historico-titulo { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-bottom:20px; }
+.historico-titulo p { margin:0 0 4px; color:#8de0a4; font-size:12px; font-weight:800; letter-spacing:1.5px; }
+.historico-titulo h1 { margin:0; font-size:30px; }
+.historico-titulo>span { padding:7px 12px; border-radius:999px; background:#ffffff24; font-size:13px; white-space:nowrap; }
+.historico-mensagem { padding:10px 12px; border-radius:9px; color:#c4f4ce; background:#ffffff16; font-size:14px; }
+.historico-lista { display:grid; gap:12px; }
+.historico-item { display:flex; align-items:center; gap:16px; padding:14px; border:1px solid #ffffff55; border-radius:14px; background:#ffffff15; }
+.historico-item img { width:82px; height:82px; object-fit:cover; border-radius:10px; background:#fff; }
+.historico-info { flex:1; }
+.historico-info h2 { margin:0 0 5px; font-size:16px; }
+.historico-info p { margin:0 0 5px; color:#c5e5cd; font-size:12px; }
+.historico-info strong { font-size:14px; }
+.historico-acoes { display:flex; align-items:center; gap:10px; }
+.historico-adicionar { padding:10px 14px; border:0; border-radius:999px; color:#14371f; background:#a4e8b3; font:inherit; font-size:13px; font-weight:700; cursor:pointer; }
+.historico-adicionar:hover { background:#c1f2cb; }
+.historico-excluir { display:grid; place-items:center; width:38px; height:38px; padding:0; border:1px solid #ff9b9b; border-radius:50%; color:#fff; background:#c62828; font-size:27px; line-height:1; cursor:pointer; }
+.historico-excluir:hover { background:#e53935; }
+.historico-vazio { padding:26px 0; text-align:center; color:#e2eee5; }
+.historico-rodape { display:flex; justify-content:center; margin-top:24px; }
+.historico-rodape a { padding:11px 20px; border-radius:999px; color:#14371f; background:#a4e8b3; font-weight:700; text-decoration:none; }
+@media(max-width:650px) { .historico-page{padding:18px 12px 30px}.historico-painel{padding:22px 16px}.historico-marca{font-size:19px}.historico-header nav{gap:8px}.historico-nav{padding:7px 10px;font-size:13px}.historico-titulo h1{font-size:24px}.historico-item{flex-wrap:wrap;gap:12px}.historico-item img{width:66px;height:66px}.historico-info h2{font-size:14px}.historico-acoes{width:100%;justify-content:flex-end}.historico-adicionar{font-size:12px} }

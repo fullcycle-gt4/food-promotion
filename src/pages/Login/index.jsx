@@ -12,7 +12,9 @@ function Login() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        if (email.trim().toLowerCase() === "teste@gmail.com" && senha === "12345678") {
+        const senhaSalva = localStorage.getItem("foodPromotionSenha") || "12345678";
+        const emailSalvo = localStorage.getItem("foodPromotionEmail") || "teste@gmail.com";
+        if (email.trim().toLowerCase() === emailSalvo.trim().toLowerCase() && senha === senhaSalva) {
             localStorage.setItem("foodPromotionEmail", email.trim());
             navigate("/Home");
             return;
