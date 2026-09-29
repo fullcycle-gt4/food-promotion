@@ -21,9 +21,10 @@ export default function Home() {
           <h1>Food Promotion</h1>
         </div>
 
-        <span>
+        <nav className="home-acoes" aria-label="Navegação da conta">
+          <Link to="/usuario" className="perfil-link">Meu perfil</Link>
           <Link to="/" className="logout">Sair</Link>
-        </span>
+        </nav>
       </header>
 
       <section className="produtos-container">

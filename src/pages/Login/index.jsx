@@ -1,6 +1,7 @@
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import PasswordField from "../../components/PasswordField";
 
 
 function Login() {
@@ -12,6 +13,7 @@ function Login() {
     function handleSubmit(event) {
         event.preventDefault();
         if (email.trim().toLowerCase() === "teste@gmail.com" && senha === "12345678") {
+            localStorage.setItem("foodPromotionEmail", email.trim());
             navigate("/Home");
             return;
         }
@@ -38,16 +40,13 @@ function Login() {
                     <i className="bx bxs-user"></i>
                 </div>
 
-                <div className="input-box">
-                    <input
-                        type="password"
-                        placeholder="Senha"
-                        value={senha}
-                        onChange={(event) => setSenha(event.target.value)}
-                        required
-                    />
-                    <i className="bx bxs-lock-alt"></i>
-                </div>
+                <PasswordField
+                    placeholder="Senha"
+                    autoComplete="current-password"
+                    value={senha}
+                    onChange={(event) => setSenha(event.target.value)}
+                    required
+                />
 
                 <div className="remember-forgot">
                     <label>
