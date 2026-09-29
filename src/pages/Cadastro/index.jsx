@@ -1,5 +1,6 @@
 import "./Cadastro.css";
 import { Link } from "react-router-dom";
+import PasswordField from "../../components/PasswordField";
 
 function Cadastro() {
     return (
@@ -48,23 +49,8 @@ function Cadastro() {
                     <i className="bx bxs-map"></i>
                 </div>
 
-                <div className="input-box">
-                    <input
-                        type="password"
-                        placeholder="Senha"
-                        required
-                    />
-                    <i className="bx bxs-lock-alt"></i>
-                </div>
-
-                <div className="input-box">
-                    <input
-                        type="password"
-                        placeholder="Confirme sua senha"
-                        required
-                    />
-                    <i className="bx bxs-lock-alt"></i>
-                </div>
+                <PasswordField placeholder="Senha" autoComplete="new-password" required />
+                <PasswordField placeholder="Confirme sua senha" autoComplete="new-password" required />
 
                 <div className="remember-forgot">
                     <label>

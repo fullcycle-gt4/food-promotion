@@ -1,6 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./refazersenha.css";
+import PasswordField from "../../../components/PasswordField";
 
 function Refazersenha() {
     const [senha, setSenha] = useState("");
@@ -45,32 +46,24 @@ function Refazersenha() {
                     Crie uma nova senha com pelo menos 8 caracteres.
                 </p>
 
-                <div className="input-box">
-                    <input
-                        type="password"
-                        name="senha"
-                        placeholder="Nova senha"
-                        autoComplete="new-password"
-                        minLength={8}
-                        value={senha}
-                        onChange={(event) => setSenha(event.target.value)}
-                        required
-                    />
-                    <i className="bx bxs-lock-alt" aria-hidden="true"></i>
-                </div>
+                <PasswordField
+                    name="senha"
+                    placeholder="Nova senha"
+                    autoComplete="new-password"
+                    minLength={8}
+                    value={senha}
+                    onChange={(event) => setSenha(event.target.value)}
+                    required
+                />
 
-                <div className="input-box">
-                    <input
-                        type="password"
-                        name="confirmacao"
-                        placeholder="Confirme a nova senha"
-                        autoComplete="new-password"
-                        value={confirmacao}
-                        onChange={(event) => setConfirmacao(event.target.value)}
-                        required
-                    />
-                    <i className="bx bxs-lock-alt" aria-hidden="true"></i>
-                </div>
+                <PasswordField
+                    name="confirmacao"
+                    placeholder="Confirme a nova senha"
+                    autoComplete="new-password"
+                    value={confirmacao}
+                    onChange={(event) => setConfirmacao(event.target.value)}
+                    required
+                />
 
                 {erro && <p className="reset-message reset-error" role="alert">{erro}</p>}
                 {sucesso && (
