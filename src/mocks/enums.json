@@ -1,0 +1,16 @@
+{
+  "orderStatus": [
+    { "value": "waiting", "label": "Aguardando retirada" },
+    { "value": "done", "label": "Concluído" },
+    { "value": "canceled", "label": "Cancelado" }
+  ],
+  "paymentMethods": [
+    { "value": "pix", "label": "Pix" },
+    { "value": "credit", "label": "Cartão de crédito" },
+    { "value": "debit", "label": "Cartão de débito" }
+  ],
+  "deliveryMethods": [
+    { "value": "pickup", "label": "Retirar na loja" },
+    { "value": "home", "label": "Entrega em casa" }
+  ]
+}

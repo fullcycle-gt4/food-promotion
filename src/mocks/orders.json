@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1042,
+    "clientId": 2,
+    "clientName": "Maria Souza",
+    "clientPhone": "(85) 98888-7777",
+    "status": "waiting",
+    "payment": "pix",
+    "delivery": "pickup",
+    "notes": "",
+    "pickupUntil": "2026-10-01",
+    "createdAt": "2026-09-29T10:12:00-03:00",
+    "items": [
+      { "productId": 1, "name": "Café Gourmet Arábica 500g", "expiresAt": "2026-10-02", "qty": 1, "unitPrice": 19.2, "originalPrice": 34.9 },
+      { "productId": 2, "name": "Iogurte Natural Integral 170g", "expiresAt": "2026-10-01", "qty": 4, "unitPrice": 1.9, "originalPrice": 3.8 }
+    ]
+  },
+  {
+    "id": 1041,
+    "clientId": 3,
+    "clientName": "João Lima",
+    "clientPhone": "(85) 99123-4567",
+    "status": "waiting",
+    "payment": "credit",
+    "delivery": "pickup",
+    "notes": "Retirar após 18h",
+    "pickupUntil": "2026-10-01",
+    "createdAt": "2026-09-29T09:40:00-03:00",
+    "items": [
+      { "productId": 4, "name": "Queijo Minas Frescal 500g", "expiresAt": "2026-10-04", "qty": 1, "unitPrice": 13.7, "originalPrice": 24.9 },
+      { "productId": 3, "name": "Pão de Forma Integral 400g", "expiresAt": "2026-10-03", "qty": 2, "unitPrice": 5.4, "originalPrice": 9.0 }
+    ]
+  },
+  {
+    "id": 1040,
+    "clientId": 2,
+    "clientName": "Maria Souza",
+    "clientPhone": "(85) 98888-7777",
+    "status": "done",
+    "payment": "pix",
+    "delivery": "pickup",
+    "notes": "",
+    "pickupUntil": "2026-09-30",
+    "createdAt": "2026-09-28T16:05:00-03:00",
+    "items": [
+      { "productId": 5, "name": "Chocolate Preto 70% Cacau 100g", "expiresAt": "2026-10-13", "qty": 3, "unitPrice": 6.5, "originalPrice": 9.99 }
+    ]
+  },
+  {
+    "id": 1039,
+    "clientId": 4,
+    "clientName": "Carlos Menezes",
+    "clientPhone": "(85) 98555-3030",
+    "status": "done",
+    "payment": "debit",
+    "delivery": "home",
+    "notes": "",
+    "pickupUntil": "2026-09-29",
+    "createdAt": "2026-09-27T11:20:00-03:00",
+    "items": [
+      { "productId": 6, "name": "Azeite de Oliva Extra Virgem 500ml", "expiresAt": "2026-10-20", "qty": 1, "unitPrice": 32.4, "originalPrice": 49.9 }
+    ]
+  },
+  {
+    "id": 1038,
+    "clientId": 5,
+    "clientName": "Fernanda Alves",
+    "clientPhone": "(85) 99800-4455",
+    "status": "canceled",
+    "payment": "pix",
+    "delivery": "pickup",
+    "notes": "",
+    "pickupUntil": "2026-09-29",
+    "createdAt": "2026-09-27T08:55:00-03:00",
+    "items": [
+      { "productId": 2, "name": "Iogurte Natural Integral 170g", "expiresAt": "2026-10-01", "qty": 6, "unitPrice": 1.9, "originalPrice": 3.8 }
+    ]
+  }
+]
