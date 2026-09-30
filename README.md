@@ -35,23 +35,49 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 ---
 
-### ⚙️ Passo a Passo
+### Execução Padrão (Nginx)
 
-1. **Clone o repositório:**
+1. Clone o repositório e entre na pasta:
    ```bash
    git clone https://github.com/fullcycle-gt4/food-promotion
-
-1. Navegue até o diretório do projeto:
-   ```bash
    cd food-promotion
+   ```
 
-2. Suba os containers da aplicação e banco de dados:
-   ```bash
-   docker compose up -d
+2. Copie `.env.example` para `.env` (PowerShell: `Copy-Item .env.example .env`; Bash: `cp .env.example .env`). Altere `POSTGRES_USER` e substitua o valor de exemplo de `POSTGRES_PASSWORD`; ajuste também `APP_PORT`, `DEV_PORT` ou `DB_PORT` se necessário. O Compose exige essas credenciais via `.env`. Esse arquivo é ignorado pelo Git e não deve ser versionado.
 
-3. Acesse e teste a API via localhost:
+3. Construa a imagem e inicie o frontend:
    ```bash
-   http://localhost:8080
+   docker compose up -d --build
+   ```
+
+4. Confira o estado dos containers e a saúde da aplicação; depois abra `http://localhost:8080` (ou a porta definida em `APP_PORT`). O endpoint `GET /health` deve responder `200` com `ok`:
+   ```bash
+   docker compose ps
+   curl http://localhost:8080/health
+   ```
+
+5. Para parar e remover os containers sem apagar os dados persistidos:
+   ```bash
+   docker compose down
+   ```
+
+O banco usa o volume nomeado `postgres_data`, que é mantido por `docker compose down`. Não use `docker compose down -v` se quiser preservar os dados.
+
+### Desenvolvimento (Vite)
+
+1. Inicie o perfil de desenvolvimento com hot reload:
+   ```bash
+   docker compose --profile dev up -d --build frontend-dev
+   ```
+
+2. Acesse `http://localhost:5173` (ou a porta definida em `DEV_PORT`). O código do workspace é montado no container; `node_modules` usa um volume Docker separado.
+
+3. Para parar o serviço de desenvolvimento:
+   ```bash
+   docker compose --profile dev down
+   ```
+
+O frontend atual ainda utiliza dados mockados e não lê nem grava no PostgreSQL. O banco já é iniciado e persistido pelo Compose para a integração com uma API futura.
 
 👥 Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
 
