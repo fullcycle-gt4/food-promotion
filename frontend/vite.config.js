@@ -8,6 +8,12 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: process.env.VITE_API_PROXY_TARGET || 'http://localhost:3000',
+        changeOrigin: true,
+      },
+    },
     hmr: process.env.CODESPACES ? { clientPort: 443 } : undefined,
     watch: { usePolling: process.env.VITE_POLLING === 'true' },
   },
