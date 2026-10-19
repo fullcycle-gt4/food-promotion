@@ -2,6 +2,8 @@
 
 ## Food Promotion Microservice
 
+
+
 > **Microserviços de Gestão de Promoções e Descontos por Vencimento de Produtos.**
 
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-iniciando-o-projeto-com-docker)
@@ -22,7 +24,7 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdi­cio de alimentos)
 
 `Novo-promotion` usa a aplicação de `food-promotion` como frontend principal. As outras implementações e os serviços da equipe foram mantidos em subpastas, sem misturar aplicações com interfaces e contratos de API diferentes:
 
-- `src/` e `back-end/`: aplicações principal e API original.
+- `src/` e `back-end/`: aplicação principal e API original.
 - `frontend-alternativo/`: implementação de `food-promotion-main`.
 - `equipe/frontend/` e `equipe/server/`: aplicação da equipe integrada   API com mensageria RabbitMQ.
 - `equipe/backend/`: API CRUD de usuários e publicações, com controllers em classes e Prisma/SQLite. Consulte [equipe/backend/README.md](./equipe/backend/README.md).
