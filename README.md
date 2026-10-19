@@ -84,7 +84,7 @@ persistente para o PostgreSQL. Também verifica a saúde do banco e aguarda até
 pronto antes de iniciar a API. O catálogo ainda usa fixtures e não persiste dados de
 negócio no banco. Consulte [back-end/README.md](./back-end/README.md) para mais detalhes.
 
-### AplicaÃ§Ã£o e API da equipe
+### Aplicação e API da equipe
 
 Com Docker Desktop em execuÃ§Ã£o:
 
@@ -105,22 +105,22 @@ npm --prefix frontend-alternativo run dev
 
 ---
 
-## ðŸ› ï¸ Tech Stack & Arquitetura
+## Tech Stack & Arquitetura
 
 - **Linguagem & Runtime:** React.js 
-- **ContainerizaÃ§Ã£o:** Docker e Docker Compose
+- **Containerização:** Docker e Docker Compose
 
 ---
 
-## ðŸš€ Iniciando o Projeto com Docker
+##  Iniciando o Projeto com Docker
 
-### ðŸ“‹ PrÃ©-requisitos
+###  Pr-requisitos
 * [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
 * [Git](https://git-scm.com/) instalado.
 
 ---
 
-### ExecuÃ§Ã£o PadrÃ£o (Nginx)
+### Execução Padrão (Nginx)
 
 1. Clone o repositório e entre na pasta:
    ```bash
