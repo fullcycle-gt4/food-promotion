@@ -1,8 +1,8 @@
 <div align="center">
 
-# ðŸ·ï¸ Food Promotion Microservice
+## Food Promotion Microservice
 
-> **MicroserviÃ§o de GestÃ£o de PromoÃ§Ãµes e Descontos por Vencimento de Produtos.**
+> **Microserviços de Gestão de Promoções e Descontos por Vencimento de Produtos.**
 
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-iniciando-o-projeto-com-docker)
 [![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange?style=for-the-badge)](#-arquitetura-e-padroes)
@@ -12,22 +12,22 @@
 
 ---
 
-## ðŸ“Œ Sobre o Projeto
+## Sobre o Projeto
 
-O **Food Promotion** Ã© um microserviÃ§o integrante da plataforma de autoatendimento para supermercados. Sua finalidade Ã© gerenciar **campanhas promocionais**, aplicando **descontos dinÃ¢micos em produtos prÃ³ximos da data de vencimento**.
+O **Food Promotion** é um microserviço integrante da plataforma de autoatendimento para supermercados. Sua finalidade é gerenciar **campanhas promocionais**, aplicando **descontos dinamicos em produtos proximos da data de vencimento**.
 
-Com isso, o estabelecimento reduz perdas de estoque (desperdÃ­cio de alimentos) e disponibiliza preÃ§os reduzidos aos clientes no totem ou aplicativo de pedidos.
+Com isso, o estabelecimento reduz perdas de estoque (desperdi­cio de alimentos) e disponibiliza preços reduzidos aos clientes no totem ou aplicativo de pedidos.
 
 ## Estrutura consolidada
 
-`Novo-promotion` usa a aplicaÃ§Ã£o de `food-promotion` como frontend principal. As outras implementaÃ§Ãµes e os serviÃ§os da equipe foram mantidos em subpastas, sem misturar aplicaÃ§Ãµes com interfaces e contratos de API diferentes:
+`Novo-promotion` usa a aplicação de `food-promotion` como frontend principal. As outras implementações e os serviços da equipe foram mantidos em subpastas, sem misturar aplicações com interfaces e contratos de API diferentes:
 
-- `src/` e `back-end/`: aplicaÃ§Ã£o principal e API original.
-- `frontend-alternativo/`: implementaÃ§Ã£o de `food-promotion-main`.
-- `equipe/frontend/` e `equipe/server/`: aplicaÃ§Ã£o da equipe integrada Ã  API com mensageria RabbitMQ.
-- `equipe/backend/`: API CRUD de usuÃ¡rios e publicaÃ§Ãµes, com controllers em classes e Prisma/SQLite. Consulte [equipe/backend/README.md](./equipe/backend/README.md).
+- `src/` e `back-end/`: aplicações principal e API original.
+- `frontend-alternativo/`: implementação de `food-promotion-main`.
+- `equipe/frontend/` e `equipe/server/`: aplicação da equipe integrada   API com mensageria RabbitMQ.
+- `equipe/backend/`: API CRUD de usuários e publicações, com controllers em classes e Prisma/SQLite. Consulte [equipe/backend/README.md](./equipe/backend/README.md).
 
-As pastas originais foram preservadas. Os repositÃ³rios Git nÃ£o foram copiados; as dependÃªncias foram instaladas no destino a partir dos lockfiles, e os builds podem ser gerados novamente com os comandos abaixo.
+As pastas originais foram preservadas. Os repositórios Git não foram copiados; as dependencias foram instaladas no destino a partir dos lockfiles, e os builds podem ser gerados novamente com os comandos abaixo.
 
 ### Aplicação principal
 
@@ -90,11 +90,11 @@ Com Docker Desktop em execuÃ§Ã£o:
 docker compose -f equipe/frontend/docker-compose.yml up --build
 ```
 
-A aplicaÃ§Ã£o da equipe fica em `http://localhost:5173`; a API fica em `http://localhost:3000`. Consulte [equipe/API.md](./equipe/API.md) para rotas, autenticaÃ§Ã£o e mensageria. Para testar a API da equipe sem Docker, instale as dependÃªncias com `npm --prefix equipe/server ci` e execute `npm --prefix equipe/server test`.
+A aplicação da equipe fica em `http://localhost:5173`; a API fica em `http://localhost:3000`. Consulte [equipe/API.md](./equipe/API.md) para rotas, autenticação e mensageria. Para testar a API da equipe sem Docker, instale as dependÃªncias com `npm --prefix equipe/server ci` e execute `npm --prefix equipe/server test`.
 
 ### Frontend alternativo
 
-Para executar a implementaÃ§Ã£o alternativa:
+Para executar a implementação alternativa:
 
 ```bash
 npm --prefix frontend-alternativo ci
@@ -113,20 +113,20 @@ npm --prefix frontend-alternativo run dev
 ## ðŸš€ Iniciando o Projeto com Docker
 
 ### ðŸ“‹ PrÃ©-requisitos
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execuÃ§Ã£o.
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
 * [Git](https://git-scm.com/) instalado.
 
 ---
 
 ### ExecuÃ§Ã£o PadrÃ£o (Nginx)
 
-1. Clone o repositÃ³rio e entre na pasta:
+1. Clone o repositório e entre na pasta:
    ```bash
    git clone https://github.com/fullcycle-gt4/food-promotion
    cd food-promotion
    ```
 
-2. Copie `.env.example` para `.env` (PowerShell: `Copy-Item .env.example .env`; Bash: `cp .env.example .env`). Altere `POSTGRES_USER` e substitua o valor de exemplo de `POSTGRES_PASSWORD`; ajuste tambÃ©m `APP_PORT`, `DEV_PORT` ou `DB_PORT` se necessÃ¡rio. O Compose exige essas credenciais via `.env`. Esse arquivo Ã© ignorado pelo Git e nÃ£o deve ser versionado.
+2. Copie `.env.example` para `.env` (PowerShell: `Copy-Item .env.example .env`; Bash: `cp .env.example .env`). Altere `POSTGRES_USER` e substitua o valor de exemplo de `POSTGRES_PASSWORD`; ajuste tambÃ©m `APP_PORT`, `DEV_PORT` ou `DB_PORT` se necessário. O Compose exige essas credenciais via `.env`. Esse arquivo é ignorado pelo Git e não deve ser versionado.
 
 3. Construa as imagens e inicie o frontend, a API e o PostgreSQL:
    ```bash
@@ -144,7 +144,7 @@ npm --prefix frontend-alternativo run dev
    docker compose down
    ```
 
-O banco usa o volume nomeado `postgres_data`, que Ã© mantido por `docker compose down`. NÃ£o use `docker compose down -v` se quiser preservar os dados.
+O banco usa o volume nomeado `postgres_data`, que é mantido por `docker compose down`. Não use `docker compose down -v` se quiser preservar os dados.
 
 ### Desenvolvimento (Vite)
 
@@ -155,14 +155,14 @@ O banco usa o volume nomeado `postgres_data`, que Ã© mantido por `docker compo
 
 2. Acesse `http://localhost:5173` (ou a porta definida em `DEV_PORT`). O Vite usa a mesma porta publicada pelo Compose. O código do workspace é montado no container; `node_modules` usa um volume Docker separado. O PostgreSQL mantém seus dados no volume `postgres_data`.
 
-3. Para parar o serviÃ§o de desenvolvimento:
+3. Para parar o serviço de desenvolvimento:
    ```bash
    docker compose --profile dev down
    ```
 
-O frontend atual ainda utiliza dados mockados e nÃ£o lÃª nem grava no PostgreSQL. O banco jÃ¡ Ã© iniciado e persistido pelo Compose para a integraÃ§Ã£o com uma API futura.
+O frontend atual ainda utiliza dados mockados e não grava no PostgreSQL. O banco já é iniciado e persistido pelo Compose para a integração com uma API futura.
 
-ðŸ‘¥ Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
+ Equipe do ProjetoDesenvolvido pelo grupo GT4 - Full Cycle.
 
 GitHub: https://github.com/DeilsonGilmar 
 GitHub: https://github.com/senna47 
