@@ -12,6 +12,11 @@
 
 ---
 
+<img width="1000" height="1000" alt="food promotion" src="https://github.com/user-attachments/assets/9f5654ab-488c-4a40-9996-779082c6bc9a" />
+<div align="center">
+
+
+
 ## 📌 Sobre o Projeto
 
 O **Food Promotion** é um microserviço integrante da plataforma de autoatendimento para supermercados. Sua finalidade é gerenciar **campanhas promocionais**, aplicando **descontos dinâmicos em produtos próximos da data de vencimento**.
