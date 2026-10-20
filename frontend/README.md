@@ -27,16 +27,16 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 ## 🛠️ Tech Stack & Arquitetura
 
-- **Linguagem & Runtime:** React.js 
-- **Containerização:** Docker e Docker Compose
+Linguagem & Runtime: React.js 
+Containerização: Docker e Docker Compose
 
 ---
 
 ## 🚀 Iniciando o Projeto com Docker
 
 ### 📋 Pré-requisitos
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
-* [Git](https://git-scm.com/) instalado.
+[Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
+[Git](https://git-scm.com/) instalado.
 
 ---
 
