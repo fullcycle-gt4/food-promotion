@@ -1,9 +1,4 @@
 
-
-
-<img width="900" height="800" alt="food promotion" src="https://github.com/user-attachments/assets/9f5654ab-488c-4a40-9996-779082c6bc9a" />
-<div align="center">
-
 # 🏷️ Food Promotion Microservice
 
 > **Microserviço de Gestão de Promoções e Descontos por Vencimento de Produtos.**
