@@ -1,7 +1,7 @@
 
 # 🏷️ Food Promotion Microservice
 
-> **Microserviço de Gestão de Promoções e Descontos por Vencimento de Produtos.**
+   > **Microserviço de Gestão de Promoções e Descontos por Vencimento de Produtos.**
 
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-iniciando-o-projeto-com-docker)
 [![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-orange?style=for-the-badge)](#-arquitetura-e-padroes)
@@ -11,7 +11,7 @@
 
 ---
 
-<img width="900" height="800" alt="food promotion" src="https://github.com/user-attachments/assets/9f5654ab-488c-4a40-9996-779082c6bc9a" />
+<img width="1000" height="1000" alt="food promotion" src="https://github.com/user-attachments/assets/9f5654ab-488c-4a40-9996-779082c6bc9a" />
 <div align="center">
    
 ## 📌 Sobre o Projeto
@@ -24,22 +24,22 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 ## 🛠️ Tech Stack & Arquitetura
 
-- **Linguagem & Runtime:** React.js 
-- **Containerização:** Docker e Docker Compose
+Linguagem & Runtime:** React.js 
+Containerização:** Docker e Docker Compose
 
 ---
 
 ## 🚀 Iniciando o Projeto com Docker
 
 ### 📋 Pré-requisitos
-* [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
-* [Git](https://git-scm.com/) instalado.
+[Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
+[Git](https://git-scm.com/) instalado.
 
 ---
 
 ### ⚙️ Passo a Passo
 
-1. **Clone o repositório:**
+1. Clone o repositório:**
    ```bash
    git clone https://github.com/fullcycle-gt4/food-promotion
 
