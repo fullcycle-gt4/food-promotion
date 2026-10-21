@@ -21,7 +21,7 @@ COPY --chown=node:node shared /shared
 
 USER node
 EXPOSE 3000
-CMD ["node", "--watch", "src/server.js"]
+CMD ["npm", "run", "dev"]
 
 FROM node:20-alpine AS production
 
@@ -36,4 +36,4 @@ COPY --chown=node:node shared /shared
 
 USER node
 EXPOSE 3000
-CMD ["node", "src/server.js"]
+CMD ["npm", "start"]

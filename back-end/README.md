@@ -1,6 +1,6 @@
 # Food Promotion API
 
-API independente do frontend, criada com Node.js e Express.
+API independente do frontend, criada com Node.js, Express e TypeScript.
 
 ## Requisitos
 
@@ -35,6 +35,8 @@ Em ambos os modos, o Compose aguarda o PostgreSQL ficar saudável antes de inici
 
 Para iniciar a API diretamente no Node.js sem Docker, instale as dependências a partir do lockfile e execute `npm --prefix back-end run dev`. Nesse caso, configure `back-end/.env` para apontar o PostgreSQL em execução no host.
 
+Os arquivos de aplicação e testes usam `.ts`. O comando `npm --prefix back-end run typecheck` valida os tipos sem gerar arquivos, e `npm --prefix back-end test` executa os testes TypeScript.
+
 Comandos úteis:
 
 ```powershell
@@ -46,7 +48,7 @@ docker compose down
 
 `docker compose down` mantém os dados do volume. Para remover intencionalmente o banco local junto com os volumes, use `docker compose down --volumes`.
 
-O `back-end/Dockerfile` usa estágios separados para dependências de produção, desenvolvimento (Node watch) e runtime de produção. A imagem final executa como usuário não-root e inclui somente dependências de produção. O Compose publica as portas da API e do banco para acesso local. A configuração do banco vem de `.env`; use `.env.example` como modelo e substitua a senha ilustrativa antes de iniciar os serviços.
+O `back-end/Dockerfile` usa estágios separados para dependências de produção, desenvolvimento (tsx watch) e runtime de produção. A imagem final executa como usuário não-root e inclui somente dependências de produção. O Compose publica as portas da API e do banco para acesso local. A configuração do banco vem de `.env`; use `.env.example` como modelo e substitua a senha ilustrativa antes de iniciar os serviços.
 
 O volume `postgres_data` persiste os dados do PostgreSQL entre reinicializações e `docker compose down`. A API atualmente lê os dados do catálogo a partir de fixtures; apesar de receber as configurações do PostgreSQL, ainda não persiste os dados de negócio no banco.
 
@@ -121,10 +123,10 @@ Erros usam o mesmo formato para validação, rota/recurso inexistente, JSON inv�
 
 Os endpoints e schemas publicados em OpenAPI são servidos em `/api/openapi.json`; a interface Swagger UI está em `/api/docs`. Usuários, pedidos e operações de escrita só serão adicionados após definição de autenticação/autorização e persistência.
 
-As configurações PostgreSQL ficam em `back-end/.env`. O módulo `src/config/database.js` exporta o pool e uma função simples de teste de conexão; a conexão só ocorre quando uma consulta é executada.
+As configurações PostgreSQL ficam em `back-end/.env`. O módulo `src/config/database.ts` exporta o pool e uma função simples de teste de conexão; a conexão só ocorre quando uma consulta é executada.
 
 ## Fixtures da API
 
-Os payloads de exemplo ficam em `back-end/mocks/` e são carregados por `src/fixtures/index.js`. Os mapeadores mantêm o contrato documentado em `back-end/mocks/README.md`, recalculam descontos pela data de vencimento, omitem senhas das respostas de usuários e validam referências de clientes e produtos nos pedidos.
+Os payloads de exemplo ficam em `back-end/mocks/` e são carregados por `src/fixtures/index.ts`. Os mapeadores mantêm o contrato documentado em `back-end/mocks/README.md`, recalculam descontos pela data de vencimento, omitem senhas das respostas de usuários e validam referências de clientes e produtos nos pedidos.
 
 Execute `npm --prefix back-end test` para validar os mapeamentos e as referências entre fixtures. As credenciais em `users.json` são somente dados de teste e não devem ser usadas como autenticação de produção.
