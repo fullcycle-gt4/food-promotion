@@ -1,0 +1,76 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-food_promotion}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-food_promotion_dev}
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    restart: unless-stopped
+
+  api:
+    image: node:20-alpine
+    init: true
+    working_dir: /workspace
+    command: sh -c "npm --prefix server ci && npm --prefix server run api"
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    volumes:
+      - ..:/workspace
+      - server_node_modules:/workspace/server/node_modules
+    environment:
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://${RABBITMQ_USER:-food_promotion}:${RABBITMQ_PASSWORD:-food_promotion_dev}@rabbitmq:5672}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://localhost:3000/api/health').then((res) => process.exit(res.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+    restart: unless-stopped
+
+  worker:
+    image: node:20-alpine
+    init: true
+    working_dir: /workspace
+    command: npm --prefix server run worker
+    depends_on:
+      api:
+        condition: service_healthy
+    volumes:
+      - ..:/workspace
+      - server_node_modules:/workspace/server/node_modules
+    environment:
+      RABBITMQ_URL: ${RABBITMQ_URL:-amqp://${RABBITMQ_USER:-food_promotion}:${RABBITMQ_PASSWORD:-food_promotion_dev}@rabbitmq:5672}
+    restart: unless-stopped
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /workspace/frontend
+    command: sh -c "npm ci && npm run dev -- --host 0.0.0.0 --port 5173 --strictPort"
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "5173:5173"
+    volumes:
+      - ..:/workspace
+      - frontend_node_modules:/workspace/frontend/node_modules
+    environment:
+      - CODESPACES=true
+      - VITE_POLLING=true
+      - VITE_API_PROXY_TARGET=http://api:3000
+
+volumes:
+  frontend_node_modules:
+  server_node_modules:
+  rabbitmq_data:

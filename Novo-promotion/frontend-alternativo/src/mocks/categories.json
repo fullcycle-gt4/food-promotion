@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Bebidas" },
+  { "id": 2, "name": "Laticínios" },
+  { "id": 3, "name": "Padaria" },
+  { "id": 4, "name": "Óleos e Condimentos" },
+  { "id": 5, "name": "Doces e Sobremesas" },
+  { "id": 6, "name": "Hortifrúti" }
+]
