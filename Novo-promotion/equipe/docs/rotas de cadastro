@@ -1,0 +1,29 @@
+
+Rotas de Cadastro (Criação de Registros)
+Responsáveis por registrar novas entradas de produtos, lotes, estoques e preferências de clientes para combater o desperdício:
+
+POST /api/products
+
+Objetivo: Cadastrar novos produtos e suas variantes (SKU, código de barras EAN/UPC, descrição, categoria, volume/peso).
+payload exemplo:{
+  "sku": "7891023456789",
+  "barcode": "7891023456789",
+  "name": "Iogurte Natural 500g",
+  "category": "Laticínios",
+  "weight": 0.500
+}
+
+POST /api/batches (ou associado ao produto)
+
+Objetivo: Cadastrar a gestão de lotes e datas de validade de cada entrada física no estoque do supermercado
+payload exemplo:{
+  "product_id": "uuid-do-produto",
+  "batch_number": "LOT-2026-10A",
+  "quantity": 150,
+  "expiration_date": "2026-10-18",
+  "location_coordinate": "R04-M12-A02"
+}
+
+POST /api/customers/interests
+
+Objetivo: Cadastrar a carteira de clientes e categorias de preferência para o envio automatizado de promoções de produtos prestes a vencer.

@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "role": "admin",
+    "name": "Admin Manager",
+    "email": "admin@foodpromotion.com",
+    "phone": "(85) 98886-7223",
+    "password": "admin123"
+  },
+  {
+    "id": 2,
+    "role": "client",
+    "name": "Maria Souza",
+    "email": "maria@email.com",
+    "phone": "(85) 98888-7777",
+    "cpf": "123.456.789-00",
+    "city": "Fortaleza, CE",
+    "password": "cliente123"
+  },
+  {
+    "id": 3,
+    "role": "client",
+    "name": "João Lima",
+    "email": "joao@email.com",
+    "phone": "(85) 99123-4567",
+    "cpf": "987.654.321-00",
+    "city": "Fortaleza, CE",
+    "password": "cliente123"
+  }
+]

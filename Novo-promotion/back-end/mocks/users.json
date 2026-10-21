@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "role": "admin",
+    "name": "Admin Manager",
+    "email": "admin@foodpromotion.com",
+    "phone": "(85) 98886-7223",
+    "password": "admin123"
+  },
+  {
+    "id": 2,
+    "role": "client",
+    "name": "Maria Souza",
+    "email": "maria@email.com",
+    "phone": "(85) 98888-7777",
+    "cpf": "123.456.789-00",
+    "city": "Fortaleza, CE",
+    "password": "cliente123"
+  },
+  {
+    "id": 3,
+    "role": "client",
+    "name": "João Lima",
+    "email": "joao@email.com",
+    "phone": "(85) 99123-4567",
+    "cpf": "987.654.321-00",
+    "city": "Fortaleza, CE",
+    "password": "cliente123"
+  },
+  {
+    "id": 4,
+    "role": "client",
+    "name": "Carlos Menezes",
+    "email": "carlos.menezes@example.test",
+    "phone": "(85) 98555-3030",
+    "city": "Fortaleza, CE",
+    "password": "mock-carlos-only"
+  },
+  {
+    "id": 5,
+    "role": "client",
+    "name": "Fernanda Alves",
+    "email": "fernanda.alves@example.test",
+    "phone": "(85) 99800-4455",
+    "city": "Fortaleza, CE",
+    "password": "mock-fernanda-only"
+  }
+]
