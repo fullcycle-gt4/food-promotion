@@ -11,7 +11,9 @@
   "description": "",
   "devDependencies": {
     "@types/better-sqlite3": "^9.6.0",
+    "@types/jest": "^30.0.0",
     "@types/node": "^26.6.4",
+    "jest": "^30.5.2",
     "prisma": "^7.10.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
@@ -22,4 +24,3 @@
     "dotenv": "^18.0.6"
   }
 }
-
