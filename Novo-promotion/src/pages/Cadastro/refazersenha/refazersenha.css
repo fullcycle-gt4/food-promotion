@@ -1,0 +1,18 @@
+﻿@import "../../Login/Login.css";
+
+.reset-instructions,
+.reset-message {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reset-message {
+  margin: 0 0 16px;
+}
+
+.reset-error {
+  color: #ffd3d3;
+}

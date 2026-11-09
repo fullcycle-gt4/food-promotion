@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <!-- Tailwind CSS CDN para estilização rápida e moderna -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <div class="container mx-auto max-w-4xl p-4 md:p-6">
+        <h1 class="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Seu Carrinho de Compras</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Lista de Produtos -->
+            <div class="lg:col-span-2 bg-white rounded-lg shadow p-4 md:p-6">
+                <h2 class="text-xl font-semibold mb-4 border-b pb-2">Produtos Selecionados</h2>
+                
+                <!-- Container onde os itens do carrinho serão injetados via JavaScript -->
+                <div id="cart-items" class="divide-y divide-gray-200">
+                    <!-- Os itens aparecem aqui dinamicamente -->
+                </div>
+
+                <!-- Mensagem caso o carrinho esteja vazio -->
+                <div id="empty-cart-message" class="hidden text-center py-8 text-gray-500">
+                    O seu carrinho está vazio.
+                </div>
+            </div>
+
+            <!-- Resumo do Pedido -->
+            <div class="bg-white rounded-lg shadow p-4 md:p-6 h-fit">
+                <h2 class="text-xl font-semibold mb-4 border-b pb-2">Resumo da Compra</h2>
+                
+                <div class="space-y-3 mb-6">
+                    <div class="flex justify-between text-gray-600">
+                        <span>Subtotal</span>
+                        <span id="subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>Frete</span>
+                        <span id="shipping">R$ 15,00</span>
+                    </div>
+                    <div class="border-t pt-3 flex justify-between font-bold text-lg text-gray-900">
+                        <span>Valor Total</span>
+                        <span id="total-price" class="text-blue-600">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="space-y-3">
+                    <button id="checkout-btn" onclick="finalizarCompra()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition duration-200 shadow">
+                        Finalizar Compra
+                    </button>
+                    <button id="clear-btn" onclick="limparCarrinho()" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 rounded-lg transition duration-200">
+                        Limpar Carrinho
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script JavaScript para gerenciar os dados do carrinho -->
+    <script>
+        // Exemplo de dados iniciais no carrinho (poderia vir do localStorage ou de uma API)
+        let carrinho = [
+            { id: 1, nome: "Fone de Ouvido Bluetooth", preco: 150.00, quantidade: 1, imagem: "https://via.placeholder.com/80" },
+            { id: 2, nome: "Mouse Gamer Ergonômico", preco: 89.90, quantidade: 2, imagem: "https://via.placeholder.com/80" }
+        ];
+
+        const valorFrete = 15.00;
+
+        function formatarMoeda(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function renderizarCarrinho() {
+            const containerItems = document.getElementById('cart-items');
+            const mensagemVazio = document.getElementById('empty-cart-message');
+            const btnFinalizar = document.getElementById('checkout-btn');
+            const btnLimpar = document.getElementById('clear-btn');
+            
+            containerItems.innerHTML = '';
+
+            if (carrinho.length === 0) {
+                mensagemVazio.classList.remove('hidden');
+                btnFinalizar.disabled = true;
+                btnFinalizar.classList.add('opacity-50', 'cursor-not-allowed');
+                btnLimpar.disabled = true;
+                btnLimpar.classList.add('opacity-50', 'cursor-not-allowed');
+                atualizarTotais(0);
+                return;
+            }
+
+            mensagemVazio.classList.add('hidden');
+            btnFinalizar.disabled = false;
+            btnFinalizar.classList.remove('opacity-50', 'cursor-not-allowed');
+            btnLimpar.disabled = false;
+            btnLimpar.classList.remove('opacity-50', 'cursor-not-allowed');
+
+            let subtotal = 0;
+
+            carrinho.forEach((produto, index) => {
+                const totalItem = produto.preco * produto.quantidade;
+                subtotal += totalItem;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = "py-4 flex items-center justify-between";
+                itemDiv.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="w-16 h-16 object-cover rounded border">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">${produto.nome}</h3>
+                            <p class="text-sm text-gray-500">Preço Unit.: ${formatarMoeda(produto.preco)}</p>
+                            <p class="text-sm text-gray-500">Qtd: ${produto.quantidade}</p>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="font-bold text-gray-900 block">${formatarMoeda(totalItem)}</span>
+                        <button onclick="removerItem(${index})" class="text-red-500 hover:text-red-700 text-xs mt-1 transition">Remover</button>
+                    </div>
+                `;
+                containerItems.appendChild(itemDiv);
+            });
+
+            atualizarTotais(subtotal);
+        }
+
+        function atualizarTotais(subtotal) {
+            const totalGeral = subtotal > 0 ? subtotal + valorFrete : 0;
+            
+            document.getElementById('subtotal').innerText = formatarMoeda(subtotal);
+            document.getElementById('shipping').innerText = subtotal > 0 ? formatarMoeda(valorFrete) : formatarMoeda(0);
+            document.getElementById('total-price').innerText = formatarMoeda(totalGeral);
+        }
+
+        function removerItem(index) {
+            carrinho.splice(index, 1);
+            renderizarCorpoCarrinhoOuAtualizar();
+        }
+
+        function limparCarrinho() {
+            carrinho = [];
+            renderizarCarrinho();
+        }
+
+        function finalizarCompra() {
+            if (carrinho.length === 0) return;
+            alert("Compra finalizada com sucesso! Redirecionando para o pagamento...");
+            // Aqui você integraria com sua API de pagamento ou redirecionaria de página
+        }
+
+        function renderizarCorpoCarrinhoOuAtualizar() {
+            renderizarCarrinho();
+        }
+
+        // Inicializa a página carregando o carrinho
+        window.onload = renderizarCarrinho;
+    </script>
+</body>
+</html>

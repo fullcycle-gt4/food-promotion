@@ -1,0 +1,20 @@
+
+Rotas de Consulta (Leitura e Listagens)
+Responsáveis por buscar dados essenciais do estoque, aplicar ordenação por validade (FEFO) e verificar os descontos dinâmicos gerados:
+
+
+GET /api/products
+
+Objetivo: Consultar o catálogo geral de produtos cadastrados, permitindo filtros por categoria ou status.
+
+GET /api/batches/fefo
+
+Objetivo: Consultar os lotes ordenados automaticamente por prazo de validade em ordem crescente (FEFO — First Expired, First Out), priorizando a saída e a aplicação de descontos nos itens mais próximos do vencimento.
+
+GET /api/promotions/active
+
+Objetivo: Consultar em tempo real quais produtos ganharam descontos progressivos automáticos (ex: 20%, 40%, 60% com base nos dias restantes para o vencimento) para exibição no aplicativo ou totem na gôndola.
+
+GET /api/inventory/alerts
+
+Objetivo: Consultar o painel de alerta de itens críticos por nível de risco de vencimento (por exemplo, lotes com menos de 3 dias para expirar).

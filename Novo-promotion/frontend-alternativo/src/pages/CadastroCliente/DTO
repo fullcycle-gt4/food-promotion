@@ -1,0 +1,31 @@
+/**
+ * These decorators are intentionally kept local so this DTO does not depend
+ * on class-validator being installed in the frontend bundle.
+ */
+function IsString() {
+  return (..._args: any[]) => undefined;
+}
+
+function IsNotEmpty() {
+  return (..._args: any[]) => undefined;
+}
+
+function IsEmail() {
+  return (..._args: any[]) => undefined;
+}
+
+export class CreateCustomerDto {
+  @IsString()
+  @IsNotEmpty()
+  name!: string;
+
+  @IsEmail()
+  email!: string;
+
+  @IsCPF()
+  document!: string;
+}
+
+function IsCPF() {
+  return (..._args: any[]) => undefined;
+}

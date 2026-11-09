@@ -1,0 +1,17 @@
+type CustomerCreateInput = Record<string, unknown>;
+
+interface CustomerClient {
+  customer: {
+    create(args: { data: CustomerCreateInput }): Promise<unknown>;
+  };
+}
+
+export class CustomerRepository {
+  constructor(private readonly prisma: CustomerClient) {}
+
+  async save(
+    customerData: CustomerCreateInput,
+  ) {
+    return await this.prisma.customer.create({ data: customerData });
+  }
+}
