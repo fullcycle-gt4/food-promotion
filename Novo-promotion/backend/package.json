@@ -1,0 +1,35 @@
+{
+  "name": "food-promotion-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "prisma migrate deploy && tsx watch src/server.ts",
+    "start": "prisma migrate deploy && tsx src/server.ts",
+    "test": "tsx --test tests/api.test.ts tests/fixtures.test.ts tests/inputValidators.test.ts tests/crud.test.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.crud.json",
+    "typecheck:all": "tsc --noEmit",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.10.0",
+    "@prisma/client": "^7.10.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "pg": "^8.23.1",
+    "prisma": "^7.10.0",
+    "swagger-ui-express": "^5.0.1",
+    "tsx": "^4.23.15"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.5",
+    "@types/pg": "^8.15.5",
+    "@types/swagger-ui-express": "^4.1.8",
+    "typescript": "^5.9.3"
+  }
+}

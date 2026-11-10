@@ -22,12 +22,12 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdÃ­cio de alimentos
 
 `Novo-promotion` usa a aplicaÃ§Ã£o de `food-promotion` como frontend principal. As outras implementaÃ§Ãµes e os serviÃ§os da equipe foram mantidos em subpastas, sem misturar aplicaÃ§Ãµes com interfaces e contratos de API diferentes:
 
-- `src/` e `back-end/`: aplicaÃ§Ã£o principal e API original.
+- `src/` e `backend/`: frontend principal e API unificada de catálogo, usuários e publicações.
 - `frontend-alternativo/`: implementaÃ§Ã£o de `food-promotion-main`.
 - `equipe/frontend/` e `equipe/server/`: aplicaÃ§Ã£o da equipe integrada Ã  API com mensageria RabbitMQ.
-- `equipe/backend/`: API CRUD de usuÃ¡rios e publicaÃ§Ãµes, com controllers em classes e Prisma/SQLite. Consulte [equipe/backend/README.md](./equipe/backend/README.md).
+- `backend/`: API unificada de catálogo e CRUD de usuários/publicações, com PostgreSQL e Prisma/SQLite. Consulte [backend/README.md](./backend/README.md).
 
-As pastas originais foram preservadas. Os repositÃ³rios Git nÃ£o foram copiados; as dependÃªncias foram instaladas no destino a partir dos lockfiles, e os builds podem ser gerados novamente com os comandos abaixo.
+As APIs foram reunidas em `backend/` sem migrar os dados entre PostgreSQL e SQLite. Os demais projetos da equipe continuam em subpastas independentes.
 
 ### Aplicação principal
 
@@ -53,17 +53,22 @@ O comando `test:coverage` executa os testes com cobertura via `c8` e gera o rela
 O backend Express pode ser iniciado na raiz do repositório:
 
 ```bash
-npm --prefix back-end ci
-npm --prefix back-end run dev
+npm --prefix backend ci
+npm --prefix backend run prisma:generate
+npm --prefix backend run dev
 ```
+
+Atalhos equivalentes disponíveis na raiz: `npm run dev:api`, `npm run test:api`,
+`npm run typecheck:api`, `npm run prisma:generate` e `npm run prisma:migrate`.
 
 A API está disponível em `http://localhost:3000`. A documentação interativa Swagger
 está em `http://localhost:3000/api/docs`, e a especificação OpenAPI está em
 `http://localhost:3000/api/openapi.json`.
 
-Os endpoints versionados de leitura do catálogo usam `/api/v1`. Nesta etapa, os dados
-vêm das fixtures e as operações de escrita ainda não estão habilitadas. Consulte
-[back-end/README.md](./back-end/README.md) para ver o contrato REST, os envelopes e
+Os endpoints versionados de leitura do catálogo usam `/api/v1`; as rotas CRUD de
+usuários e publicações usam `/users` e `/posts`. O catálogo continua lendo dados das
+fixtures. Consulte
+[backend/README.md](./backend/README.md) para ver o contrato REST, os envelopes e
 os endpoints disponíveis.
 
 Para iniciar a API de produção e o PostgreSQL, copie `.env.example` para `.env` e
@@ -83,7 +88,7 @@ A API de desenvolvimento usa a porta `3001` por padrão. O Dockerfile separa os 
 de desenvolvimento e produção. O Compose configura uma rede compartilhada e um volume
 persistente para o PostgreSQL. Também verifica a saúde do banco e aguarda até que esteja
 pronto antes de iniciar a API. O catálogo ainda usa fixtures e não persiste dados de
-negócio no banco. Consulte [back-end/README.md](./back-end/README.md) para mais detalhes.
+negócio no banco. Consulte [backend/README.md](./backend/README.md) para mais detalhes.
 
 ### AplicaÃ§Ã£o e API da equipe
 

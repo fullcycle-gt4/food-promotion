@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/config/prisma.ts",
+    "src/controllers/PostController.ts",
+    "src/controllers/UserController.ts",
+    "src/routes/post.routes.ts",
+    "src/routes/user.routes.ts",
+    "src/services/PostService.ts",
+    "src/services/UserService.ts",
+    "src/validators/PostInputValidator.ts",
+    "src/validators/UserInputValidator.ts",
+    "tests/inputValidators.test.ts"
+  ]
+}
