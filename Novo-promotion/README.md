@@ -43,7 +43,10 @@ Para gerar o build e executar os testes:
 ```bash
 npm run build
 npm test
+npm run test:coverage
 ```
+
+O comando `test:coverage` executa os testes com cobertura via `c8` e gera o relatório HTML em `coverage/index.html`.
 
 ### API REST independente
 
