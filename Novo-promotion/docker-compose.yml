@@ -22,7 +22,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: back-end/Dockerfile
+      dockerfile: backend/Dockerfile
       target: production
     restart: unless-stopped
     environment:
@@ -34,11 +34,14 @@ services:
       PGDATABASE: ${POSTGRES_DB:-food_promotion}
       PGUSER: ${POSTGRES_USER:?Defina POSTGRES_USER no arquivo .env}
       PGPASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}
+      DATABASE_URL: file:/app/data/dev.db
     ports:
       - "${API_PORT:-3000}:3000"
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - prisma_data:/app/data
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/v1/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
       interval: 30s
@@ -53,7 +56,7 @@ services:
       - dev
     build:
       context: .
-      dockerfile: back-end/Dockerfile
+      dockerfile: backend/Dockerfile
       target: development
     restart: unless-stopped
     environment:
@@ -65,15 +68,17 @@ services:
       PGDATABASE: ${POSTGRES_DB:-food_promotion}
       PGUSER: ${POSTGRES_USER:?Defina POSTGRES_USER no arquivo .env}
       PGPASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no arquivo .env}
+      DATABASE_URL: file:/app/data/dev.db
     ports:
       - "${API_DEV_PORT:-3001}:3000"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./back-end/src:/app/src
-      - ./back-end/mocks:/app/mocks:ro
+      - ./backend/src:/app/src
+      - ./backend/mocks:/app/mocks:ro
       - ./shared:/shared:ro
+      - prisma_data:/app/data
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/v1/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
       interval: 30s
@@ -126,6 +131,7 @@ services:
 volumes:
   frontend_node_modules:
   postgres_data:
+  prisma_data:
 
 networks:
   app-network:
