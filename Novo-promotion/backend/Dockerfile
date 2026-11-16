@@ -11,6 +11,22 @@ RUN npm ci --omit=dev --no-audit --no-fund \
     && npm run prisma:generate \
     && npm cache clean --force
 
+FROM node:20-alpine AS production-build
+
+ENV NODE_ENV=development
+WORKDIR /app/Novo-promotion/backend
+
+COPY backend/package.json backend/package-lock.json ./
+RUN apk add --no-cache python3 make g++
+RUN npm ci --no-audit --no-fund
+
+COPY backend/tsconfig.json backend/tsconfig.build.json ./
+COPY backend/prisma ./prisma
+COPY backend/prisma.config.ts ./prisma.config.ts
+COPY backend/src ./src
+COPY shared /app/Novo-promotion/shared
+RUN npm run build
+
 FROM node:20-alpine AS development
 
 ENV NODE_ENV=development
@@ -42,6 +58,7 @@ RUN apk add --no-cache libstdc++
 
 COPY --from=production-dependencies --chown=node:node /app/node_modules ./node_modules
 COPY --from=production-dependencies --chown=node:node /app/generated ./generated
+COPY --from=production-build --chown=node:node /app/Novo-promotion/backend/dist ./dist
 COPY --chown=node:node backend/package.json ./package.json
 COPY --chown=node:node backend/src ./src
 COPY backend/mocks ./mocks

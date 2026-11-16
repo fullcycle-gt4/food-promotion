@@ -38,6 +38,10 @@ Em ambos os modos, o Compose aguarda o PostgreSQL ficar saudável antes de inici
 
 Para iniciar a API diretamente no Node.js sem Docker, configure `backend/.env` usando `backend/.env.example`, instale as dependências e execute `npm --prefix backend run dev`. O comando aplica as migrations Prisma do SQLite antes de iniciar o servidor.
 
+Para compilar e executar a versão de produção, use `npm --prefix backend run build` e depois `npm --prefix backend start`. O build gera o cliente Prisma e compila os arquivos para `backend/dist`; o comando `start` aplica as migrations e inicia o servidor compilado.
+
+No Render, configure o diretório raiz como `Novo-promotion/backend`, o comando de build como `npm ci && npm run build` e o comando de start como `npm start`.
+
 O SQLite usa `DATABASE_URL` (padrão `file:./dev.db`) e permanece separado do PostgreSQL usado pelo catálogo. No Compose, os arquivos SQLite persistem no volume `prisma_data`; a migration é aplicada automaticamente ao iniciar a API.
 
 As rotas CRUD mantêm o contrato original e ficam disponíveis no mesmo servidor:
