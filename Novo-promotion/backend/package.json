@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "prisma migrate deploy && tsx watch src/server.ts",
-    "start": "prisma migrate deploy && tsx src/server.ts",
+    "build": "npm run prisma:generate && tsc -p tsconfig.build.json --noCheck",
+    "start": "prisma migrate deploy && node dist/backend/src/server.js",
     "test": "tsx --test tests/api.test.ts tests/fixtures.test.ts tests/inputValidators.test.ts tests/crud.test.ts",
     "typecheck": "tsc --noEmit -p tsconfig.crud.json",
     "typecheck:all": "tsc --noEmit",
