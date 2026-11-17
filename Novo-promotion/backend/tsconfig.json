@@ -13,5 +13,5 @@
     "checkJs": false,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "../shared/promocoes.js"]
+  "include": ["src/**/*.ts", "tests/**/*.ts", "../shared/promocoes.js mocks/*"],
 }
