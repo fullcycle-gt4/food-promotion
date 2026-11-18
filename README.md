@@ -45,11 +45,12 @@ Containerização:** Docker e Docker Compose
    ```bash
    git clone https://github.com/fullcycle-gt4/food-promotion
 
-1. Navegue até o diretório do projeto:
+1. Navegue até o diretório da aplicação principal:
    ```bash
-   cd food-promotion
+   cd food-promotion/Novo-promotion
 
 2. Suba os containers da aplicação e banco de dados:
+   Configure o arquivo `.env` conforme as instruções em `Novo-promotion/README.md` antes de iniciar.
    ```bash
    docker compose up -d
 
