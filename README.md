@@ -1,8 +1,6 @@
 <div align="center">
- 
 # 🏷️ Food Promotion Microservice
 
-   
    **Microserviço de Gestão de Promoções e Descontos por Vencimento de Produtos.**
 
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)](#-iniciando-o-projeto-com-docker)
@@ -15,8 +13,8 @@
 
 <img width="1000" height="1000" alt="food promotion" src="https://github.com/user-attachments/assets/9f5654ab-488c-4a40-9996-779082c6bc9a" />
 <div align="center">
-   
-## 📌 Sobre o Projeto
+
+Sobre o Projeto
 
 O **Food Promotion** é um microserviço integrante da plataforma de autoatendimento para supermercados. Sua finalidade é gerenciar **campanhas promocionais**, aplicando **descontos dinâmicos em produtos próximos da data de vencimento**.
 
@@ -24,16 +22,16 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdício de alimentos) 
 
 ---
 
-## 🛠️ Tech Stack & Arquitetura
+Tech Stack & Arquitetura
 
 Linguagem & Runtime:** React.js 
 Containerização:** Docker e Docker Compose
 
 ---
 
-## 🚀 Iniciando o Projeto com Docker
+Iniciando o Projeto com Docker
 
-### 📋 Pré-requisitos
+Pré-requisitos
 [Docker Desktop](https://www.docker.com/products/docker-desktop/) instalado e em execução.
 [Git](https://git-scm.com/) instalado.
 
