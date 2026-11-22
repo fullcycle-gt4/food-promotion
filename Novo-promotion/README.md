@@ -20,14 +20,13 @@ Com isso, o estabelecimento reduz perdas de estoque (desperdÃ­cio de alimentos
 
 ## Estrutura consolidada
 
-`Novo-promotion` usa a aplicaÃ§Ã£o de `food-promotion` como frontend principal. As outras implementaÃ§Ãµes e os serviÃ§os da equipe foram mantidos em subpastas, sem misturar aplicaÃ§Ãµes com interfaces e contratos de API diferentes:
+`Novo-promotion` reúne a aplicação principal do repositório, com frontend e API organizados em subpastas:
 
 - `src/` e `backend/`: frontend principal e API unificada de catálogo, usuários e publicações.
-- `frontend-alternativo/`: implementaÃ§Ã£o de `food-promotion-main`.
-- `equipe/frontend/` e `equipe/server/`: aplicaÃ§Ã£o da equipe integrada Ã  API com mensageria RabbitMQ.
+- `frontend-alternativo/`: implementação de `food-promotion-main`.
 - `backend/`: API unificada de catálogo e CRUD de usuários/publicações, com PostgreSQL e Prisma/SQLite. Consulte [backend/README.md](./backend/README.md).
 
-As APIs foram reunidas em `backend/` sem migrar os dados entre PostgreSQL e SQLite. Os demais projetos da equipe continuam em subpastas independentes.
+As APIs foram reunidas em `backend/` sem migrar os dados entre PostgreSQL e SQLite.
 
 ### Aplicação principal
 
@@ -89,16 +88,6 @@ de desenvolvimento e produção. O Compose configura uma rede compartilhada e um
 persistente para o PostgreSQL. Também verifica a saúde do banco e aguarda até que esteja
 pronto antes de iniciar a API. O catálogo ainda usa fixtures e não persiste dados de
 negócio no banco. Consulte [backend/README.md](./backend/README.md) para mais detalhes.
-
-### AplicaÃ§Ã£o e API da equipe
-
-Com Docker Desktop em execuÃ§Ã£o:
-
-```bash
-docker compose -f equipe/frontend/docker-compose.yml up --build
-```
-
-A aplicaÃ§Ã£o da equipe fica em `http://localhost:5173`; a API fica em `http://localhost:3000`. Consulte [equipe/API.md](./equipe/API.md) para rotas, autenticaÃ§Ã£o e mensageria. Para testar a API da equipe sem Docker, instale as dependÃªncias com `npm --prefix equipe/server ci` e execute `npm --prefix equipe/server test`.
 
 ### Frontend alternativo
 

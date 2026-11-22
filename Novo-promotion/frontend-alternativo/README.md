@@ -48,8 +48,6 @@ Os arquivos de produção são gerados em `dist/`.
 - `src/context/`: estado de autenticação e carrinho.
 - `src/services/`: serviços e camada HTTP.
 - `src/mocks/`: dados simulados usados durante o desenvolvimento.
-- `__src/`: implementações e páginas de uma versão anterior/em desenvolvimento.
-
 ## Scripts
 
 - `npm run dev`: inicia o servidor de desenvolvimento.
