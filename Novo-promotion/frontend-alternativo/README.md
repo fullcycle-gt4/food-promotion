@@ -9,6 +9,22 @@ Repositório: https://github.com/EmillioMartins/promotion_food
 - Node.js 20 ou superior e npm
 - Docker Desktop, caso prefira executar com Docker Compose
 
+## Integração com a API
+
+Configure a URL do backend no arquivo `.env`:
+
+```env
+VITE_API_URL=https://backend-gpp0.onrender.com
+```
+
+Os dados de produtos e categorias são consumidos dos endpoints:
+
+- `GET /api/v1/products`
+- `GET /api/v1/products/:id`
+- `GET /api/v1/categories`
+
+O frontend utiliza `src/api.js` como camada central das requisições HTTP.
+
 ## Executar localmente
 
 ```bash

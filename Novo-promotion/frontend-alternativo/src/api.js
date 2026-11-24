@@ -1,34 +1,38 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
 
-export async function getPromocoes() {
-  const response = await `${API_URL}/promocoes`;
+const API_URL = (
+  import.meta.env.VITE_API_URL || 'http://localhost:3000'
+).replace(/\/$/, '');
+
+export async function request(endpoint, options = {}) {
+  const response = await fetch(`${API_URL}${endpoint}`, {
+    ...options,
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Erro na API: ${response.status}`);
+  }
+
   return response.json();
 }
 
-import express from 'express';
-import cors from 'cors';
+// Consulta produtos
+export async function getProdutos() {
+  const payload = await request('/api/v1/products');
+  return payload?.data ?? [];
+}
 
-const app = express();
+// Consulta produto por id
+export async function getProduto(id) {
+  const payload = await request(`/api/v1/products/${encodeURIComponent(id)}`);
+  return payload?.data ?? null;
+}
 
-// 1. Ativa o CORS permitindo requisições do seu frontend local e do Render
-app.use(cors({
-  origin: [
-    'http://localhost:5173',                  // Porta padrão do Vite local
-    'https://seu-frontend.onrender.com'       // Substitua pela URL real do seu frontend no Render
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],  // Métodos HTTP liberados
-  credentials: true                           // Permite envio de cookies/tokens de autenticação, se usar
-}));
-
-// Se quiser liberar para *qualquer* site acessar (útil para testes rápidos):
-// app.use(cors());
-
-app.use(express.json());
-
-// Suas rotas aqui...
-// app.use('/promocoes', rotasPromocoes);
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
-});
+// Consulta categorias
+export async function getCategorias() {
+  const payload = await request('/api/v1/categories');
+  return payload?.data ?? [];
+}
