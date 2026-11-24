@@ -1,25 +1,20 @@
-import seed from '../mocks/products.json';
 import defaultStore from '../mocks/store.json';
 import { mock, nextId } from './http';
 import { daysUntil } from '../utils/date';
-import { mockProdutos } from '../../../src/mocks/mockProdutos.js';
+import { getProduto, getProdutos } from '../api.js';
 
-const imagesByName = new Map(mockProdutos.map(({ nome, imagem }) => [nome.toLowerCase(), imagem]));
-const imageAliases = { 'chá verde 20 sachês': 'Chá Verde Orgânico Sachê 20g' };
-let db = structuredClone(seed).map((product) => {
-  const imageName = imageAliases[product.name.toLowerCase()] || product.name;
-  const image = imagesByName.get(imageName.toLowerCase());
-  return image ? { ...product, images: [image] } : product;
-});
+let db = null;
 
-export const findProduct = (id) => db.find((p) => p.id === Number(id));
+export const findProduct = (id) => db?.find((p) => p.id === Number(id));
 export const decrementStock = (id, qty) => {
+  if (!db) return;
   db = db.map((p) => (p.id === Number(id) ? { ...p, stock: Math.max(0, p.stock - qty) } : p));
 };
 
 export const productService = {
   // GET /products?category=&search=&onlyAvailable=&sort=expiresAt|discount
-  list({ category, search, onlyAvailable, sort } = {}) {
+  async list({ category, search, onlyAvailable, sort } = {}) {
+    if (!db) db = await getProdutos();
     let r = db;
     if (category) r = r.filter((p) => p.category === category);
     if (search) {
@@ -29,17 +24,21 @@ export const productService = {
     if (onlyAvailable) r = r.filter((p) => p.stock > 0 && daysUntil(p.expiresAt) >= 0);
     if (sort === 'expiresAt') r = [...r].sort((a, b) => a.expiresAt.localeCompare(b.expiresAt));
     if (sort === 'discount') r = [...r].sort((a, b) => b.discount - a.discount);
-    return mock(r);
+    return r;
   },
 
   // GET /products/:id
-  get(id) {
+  async get(id) {
     const p = findProduct(id);
-    return p ? mock(p) : mock(null, { fail: 'Produto não encontrado.' });
+    if (p) return p;
+    const product = await getProduto(id);
+    if (!product) throw new Error('Produto nao encontrado.');
+    return product;
   },
 
   // POST /products
   create(data) {
+    if (!db) db = [];
     const p = { store: defaultStore, images: [], ...data, id: nextId(db) };
     db = [...db, p];
     return mock(p);
