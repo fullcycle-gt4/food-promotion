@@ -19,15 +19,19 @@ export default function Catalog() {
   const navigate = useNavigate();
   const toast = useToast();
   const { data: categories } = useAsync(() => categoryService.list(), []);
-  const { data: products } = useAsync(
-    () => productService.list({
-      category: category === 'Todas' ? '' : category,
-      search,
-      onlyAvailable: true,
-      sort: 'expiresAt',
-    }),
-    [category, search],
+  const { data: products, loading: productsLoading, error: productsError } = useAsync(
+    () => productService.list({ onlyAvailable: true, sort: 'expiresAt' }),
+    [],
   );
+  const filteredProducts = (products || []).filter((product) => {
+    const matchesCategory = category === 'Todas' || product.category === category;
+    const term = search.trim().toLowerCase();
+    const matchesSearch = !term
+      || product.name?.toLowerCase().includes(term)
+      || product.brand?.toLowerCase().includes(term)
+      || product.category?.toLowerCase().includes(term);
+    return matchesCategory && matchesSearch;
+  });
 
   const selectedCount = items.reduce((total, item) => total + item.qty, 0);
   const quantityFor = (product) => Math.min(
@@ -71,7 +75,7 @@ export default function Catalog() {
             <h2>Produtos</h2>
             <p>Produtos disponíveis para sua próxima compra.</p>
           </div>
-          <span className="total-produtos">{products?.length ?? 0} produtos</span>
+          <span className="total-produtos">{filteredProducts.length} produtos</span>
         </div>
 
         <div className="loja-filtros">
@@ -98,7 +102,11 @@ export default function Catalog() {
 
         <div className="loja-conteudo">
           <div className="produtos-grid">
-            {products?.map((product) => (
+            {productsLoading && <p className="loja-vazio">Carregando produtos...</p>}
+            {!productsLoading && productsError && (
+              <p className="loja-vazio">Não foi possível carregar os produtos. Tente novamente mais tarde.</p>
+            )}
+            {!productsLoading && !productsError && filteredProducts.map((product) => (
               <article className="produto-card" key={product.id}>
                 <div className="produto-imagem">
                   {product.images?.[0] ? (
@@ -155,7 +163,9 @@ export default function Catalog() {
                 </div>
               </article>
             ))}
-            {products?.length === 0 && <p className="loja-vazio">Nenhum produto encontrado.</p>}
+            {!productsLoading && !productsError && filteredProducts.length === 0 && (
+              <p className="loja-vazio">Nenhum produto encontrado.</p>
+            )}
           </div>
           <SelectionPanel />
         </div>
