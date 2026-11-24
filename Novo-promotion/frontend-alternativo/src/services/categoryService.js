@@ -1,9 +1,12 @@
-import seed from '../mocks/categories.json';
-import { mock } from './http';
+import { getCategorias } from '../api.js';
+
+let cachedCategories = null;
 
 export const categoryService = {
-  // GET /categories
-  list() {
-    return mock(seed);
+  async list() {
+    if (!cachedCategories) {
+      cachedCategories = await getCategorias();
+    }
+    return cachedCategories;
   },
 };
